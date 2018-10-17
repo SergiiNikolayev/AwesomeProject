@@ -3,6 +3,8 @@ import {StyleSheet, View} from 'react-native';
 // import { Provider } from 'mobx-react';
 import App from './src';
 import Login from './src/containers/Login';
+import Registration from './src/containers/Registration';
+import Header from "./src/components/Header";
 // import stores from './src/stores';
 
 
@@ -10,7 +12,7 @@ export default class Setup extends Component {
   render() {
       return (
         <View style={styles.container}>
-          <Login/>
+          <Login />
         </View>
     );
   }

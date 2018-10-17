@@ -41,9 +41,8 @@
       "scale" : "3x"
     },
     {
-      "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "bg-10-full.jpg",
+      "size" : "1024x1024",
       "scale" : "1x"
     }
   ],
