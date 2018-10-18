@@ -7,7 +7,7 @@ const Header = (props) => (
     <View style={styles.leftItem}>
       {props.title !== 'Login'
         ? (
-          <TouchableOpacity onPress={props.pressBack}>
+          <TouchableOpacity onPress={props.back}>
             <Text>Back</Text>
           </TouchableOpacity>
         )

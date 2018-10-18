@@ -21,6 +21,8 @@ export default class Registration extends Component {
     try {
       const result = await registerUser({ email, password });
       await console.log('debug-result', result);
+      await alert("Thanks for registration");
+      this.props.navigation.navigate("Login");
     } catch (error) {
       console.log('Error in login', error);
     }
@@ -38,7 +40,7 @@ export default class Registration extends Component {
     return (
       <View style={styles.container}>
         <Header
-          pressBack={() => alert("back")}
+          back={() => this.props.navigation.goBack()}
           title="Registration"
         />
         <View style={styles.container}>
