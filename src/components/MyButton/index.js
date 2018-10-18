@@ -1,17 +1,18 @@
 import React from 'react';
-import {View, Button} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 
 import {styles} from "./styles";
 
 const MyButton = (props) => {
   return (
-    <View>
-      <Button
+    <View style={styles.wrap}>
+      <TouchableOpacity
         style={styles.button}
-        title={props.btnName}
         onPress={props.pressed}
         color="#70B455"
-      />
+      >
+        <Text style={styles.btnName}>{props.btnName}</Text>
+      </TouchableOpacity>
     </View>
   );
 };

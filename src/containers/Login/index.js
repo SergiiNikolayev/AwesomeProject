@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import {styles} from './styles.js';
 import MyInput from "../../components/MyInput";
 import MyButton from "../../components/MyButton";
+import { loginUser } from '../../api/axoisRequest';
 
 export default class Login extends Component {
   constructor(props) {
@@ -11,30 +12,21 @@ export default class Login extends Component {
       username: 'peter@klaven',
       password: 'cityslicka',
     };
-
   }
 
-  async onLogin() {
-      try {
-        let response = await fetch('https://reqres.in/api/login',
-          {
-            method: 'POST',
-            body: JSON.stringify({
-              "email": "peter@klaven",
-              "password": "cityslicka"
-            })
-          }
-        );
-        let responseJson = await response.json();
-        alert(responseJson.status);
-        return responseJson.status;
-      } catch (error) {
-        console.error(error);
-      }
+  onLogin = async () => {
+    const { username, password } = this.state;
+    try {
+      const result = await loginUser({ username, password });
+      await console.log('debug-result', result);
+      this.props.navigation.navigate('Reg');
+    } catch (error) {
+      console.log('Error in login', error);
+    }
   }
 
-  registration() {
-    alert("navigation.navigate");
+  registration = () => {
+    this.props.navigation.navigate('Reg');
   }
 
   onChangeUsername(value) {
@@ -46,7 +38,6 @@ export default class Login extends Component {
   }
 
   render() {
-    console.log('debug-state', this.state);
     return (
       <View style={styles.container}>
         <View style={styles.form}>
@@ -57,6 +48,7 @@ export default class Login extends Component {
           />
           <MyInput
             title="Password"
+            value={this.state.password}
             onChangeText={(text) => this.onChangePassword(text)}
           />
           <MyButton

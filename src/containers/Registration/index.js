@@ -4,18 +4,26 @@ import {styles} from './styles';
 import MyInput from "../../components/MyInput";
 import MyButton from "../../components/MyButton";
 import Header from "../../components/Header";
+import {registerUser} from '../../api/axoisRequest';
+
 
 export default class Registration extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
+      email: 'sydney@fife',
+      password: 'pistol',
     };
   }
 
-  async onRegistration() {
-    alert("sadqwqwdqd");
+  onRegistration = async() => {
+    const { email, password } = this.state;
+    try {
+      const result = await registerUser({ email, password });
+      await console.log('debug-result', result);
+    } catch (error) {
+      console.log('Error in login', error);
+    }
   }
 
   onChangeEmail(value) {
@@ -27,7 +35,6 @@ export default class Registration extends Component {
   }
 
   render() {
-    console.log('debug-state', this.state);
     return (
       <View style={styles.container}>
         <Header
@@ -38,10 +45,12 @@ export default class Registration extends Component {
         <View style={styles.form}>
           <MyInput
             title="E-mail"
+            value={this.state.email}
             onChangeText={(text) => this.onChangeEmail(text)}
           />
           <MyInput
             title="Password"
+            value={this.state.password}
             onChangeText={(text) => this.onChangePassword(text)}
           />
           <MyButton
